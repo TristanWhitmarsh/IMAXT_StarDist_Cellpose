@@ -18,6 +18,7 @@ The pretrained models by StarDist and Cellpose together with our new models were
 |Cellpose |nuclei<br>IMAXT_Cellpose   |0.68±0.24<br>0.86±0.04   |0.59±0.28<br>0.79±0.12   |
 |StarDist |2D_paper_dsb2018<br>2D_versatile_fluo<br>IMAXT_StarDist |0.73±0.17<br>0.80±0.06<br>0.85±0.03 |0.51±0.29<br>0.59±0.22<br>0.76±0.08|
 
+rand_cmap from https://github.com/delestro/rand_cmap by delestro
 
 # References
 
