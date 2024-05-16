@@ -1,5 +1,7 @@
 # IMAXT StarDist Cellpose
 
+## Training data
+
 This repository includes StarDist [1,2] and Cellpose [3] nuclei segmentation models trained using all publicly available and IMAXT data. It also includes notebooks for running the inference using these models. For the instalation of StarDist and Cellpose please refer to the following links:<br />
 StarDist: [https://github.com/stardist/stardist](https://github.com/stardist/stardist)<br />
 Cellpose: [https://github.com/MouseLand/cellpose](https://github.com/MouseLand/cellpose)
@@ -10,15 +12,29 @@ For the manual segmentation of the cell nuclei we recruited 8 volunteers. Each o
 
 For the training of the model we additionally added publicly available datasets of fluorescent images with annotated cell nuclei to further enhance the generalizability of the model. These public datasets include BBBC020, BBBC038v1 and BBBC039v1 from the Broad Bioimage Benchmark Collection [4,5,6]. For BBBC038v1 we used the fluorescent images of "stage1_train" only, from the unofficial fixes by Konstantin Lopuhin (https://github.com/lopuhin/kaggle-dsbowl-2018-dataset-fixes). We also used the images from Coelho et al. [7], which consists of hand-segmented nuclear images of 3T3 and U20S cells.
 
-**These models are for non-commercial use only.**
-
 The pretrained models by StarDist and Cellpose together with our new models were tested on the 16 images from the IMAXT test set, which produced the following results:
 |Method   |Model   |Pixel-wise F1   |Object-wise F1   |
 |---|---|---|---|
 |Cellpose |nuclei<br>IMAXT_Cellpose   |0.68±0.24<br>0.86±0.04   |0.59±0.28<br>0.79±0.12   |
 |StarDist |2D_paper_dsb2018<br>2D_versatile_fluo<br>IMAXT_StarDist |0.73±0.17<br>0.80±0.06<br>0.85±0.03 |0.51±0.29<br>0.59±0.22<br>0.76±0.08|
 
-rand_cmap.py adapted from https://github.com/delestro/rand_cmap by delestro
+## StarDist in QuPath
+
+QuPath can run StarDist, but this requires a different model. You can find this model in the models/stardist_qupath folder. For optimal accuracy this model was trained on the entire training dataset, including the previously defined test set. To run StarDist in QuPath you can follow the directions of the official QuPath website here: https://qupath.readthedocs.io/en/0.4/docs/deep/djl.html
+
+The below steps will make it work for QuPath version 0.5.1.
+
+1. Download the QuPath Deep Java Library extension (qupath-extension-djl-0.2.0.jar) from here: https://github.com/qupath/qupath-extension-djl 
+2. Download the Stardist extension (qupath-extension-stardist-0.4.0.jar) from here : https://github.com/qupath/qupath-extension-stardist
+3. Install these extensions in QuPath by simply dragging and dropping the two .jar files into the QuPath window.
+4. In QuPath Extensions ‣ Deep Java Library ‣ Manage DJL Engines Download TensorFlow (Not PyTorch!)
+5. Download the model.pb and StarDist.groovy files from [/models/](/models/stardist_qupath/)
+6. In QuPath define a region using the rectangle annotation tool.
+7. Select Automate ‣ Script editor and open the StarDist.groovy file.
+8. In the StarDist.groovy file set the correct path to the model.pb file.
+9. Press "Run" in the Script Editor.
+
+Stardist will now run. When finished the cell segmentations will be displayed as objects.
 
 # References
 
@@ -39,3 +55,7 @@ Cytometry Part A 95.9 (2019), pp. 952–965. DOI: 10.1002/cyto.a.23863.908
 7. Luis Pedro Coelho, Aabid Shariff, and Robert F. Murphy. “Nuclear segmentation in microscope cell images: A hand-909
 segmented dataset and comparison of algorithms”. In: 2009 IEEE International Symposium on Biomedical Imaging:910
 From Nano to Macro. 2009, pp. 518–521. DOI: 10.1109/ISBI.2009.5193098
+
+**These models are for non-commercial use only.*
+
+**rand_cmap.py adapted from https://github.com/delestro/rand_cmap by delestro*
