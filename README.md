@@ -28,7 +28,7 @@ The below steps will make it work for QuPath version 0.5.1.
 2. Download the Stardist extension (qupath-extension-stardist-0.4.0.jar) from here : https://github.com/qupath/qupath-extension-stardist
 3. Install these extensions in QuPath by simply dragging and dropping the two .jar files into the QuPath window.
 4. In QuPath Extensions ‣ Deep Java Library ‣ Manage DJL Engines Download TensorFlow (Not PyTorch!)
-5. Download the model.pb and StarDist.groovy files from [/models/](/models/stardist_qupath/)
+5. Download the model.pb and StarDist.groovy files from [/models/stardist_qupath/](/models/stardist_qupath/)
 6. In QuPath define a region using the rectangle annotation tool.
 7. Select Automate ‣ Script editor and open the StarDist.groovy file.
 8. In the StarDist.groovy file set the correct path to the model.pb file.
